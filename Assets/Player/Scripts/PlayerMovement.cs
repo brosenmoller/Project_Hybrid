@@ -40,37 +40,34 @@ public class PlayerMovement : MonoBehaviour
     private float movementX;
 
     private Rigidbody2D rb;
-    private PlayerControls controls;
+    private InputService inputService;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-    }
 
-    private void OnEnable()
-    {
-        controls ??= new PlayerControls();
-        controls.Gameplay.Enable();
+        rb.gravityScale = rigidBodyGravityScale;
+        currentJumpVelocity = maxJumpVelocity;
 
-        controls.Gameplay.HorizontalMovement.performed += UpdateMovementDirection;
-        controls.Gameplay.HorizontalMovement.canceled += ResetMovementDirection;
-        controls.Gameplay.Jump.started += InitiateJump;
-        controls.Gameplay.Jump.canceled += CutJumpVelocity;
-    }
-
-    private void OnDisable()
-    {
-        controls.Gameplay.HorizontalMovement.performed -= UpdateMovementDirection;
-        controls.Gameplay.HorizontalMovement.canceled -= ResetMovementDirection;
-        controls.Gameplay.Jump.started -= InitiateJump;
-        controls.Gameplay.Jump.canceled -= CutJumpVelocity;
+        isGrounded = GroundCheck();
     }
 
     private void Start()
     {
-        isGrounded = GroundCheck();
-        rb.gravityScale = rigidBodyGravityScale;
-        currentJumpVelocity = maxJumpVelocity;
+        inputService = ServiceLocator.Instance.Get<InputService>();
+
+        inputService.playerInputActions.Gameplay.HorizontalMovement.performed += UpdateMovementDirection;
+        inputService.playerInputActions.Gameplay.HorizontalMovement.canceled += ResetMovementDirection;
+        inputService.playerInputActions.Gameplay.Jump.started += InitiateJump;
+        inputService.playerInputActions.Gameplay.Jump.canceled += CutJumpVelocity;
+    }
+
+    private void OnDisable()
+    {
+        inputService.playerInputActions.Gameplay.HorizontalMovement.performed -= UpdateMovementDirection;
+        inputService.playerInputActions.Gameplay.HorizontalMovement.canceled -= ResetMovementDirection;
+        inputService.playerInputActions.Gameplay.Jump.started -= InitiateJump;
+        inputService.playerInputActions.Gameplay.Jump.canceled -= CutJumpVelocity;
     }
 
     private void Update()
