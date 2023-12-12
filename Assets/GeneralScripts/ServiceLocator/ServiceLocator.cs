@@ -11,12 +11,6 @@ public class ServiceLocator : IServiceLocator
 
     public ServiceLocator()
     {
-        //if (Instance != null)
-        //{
-        //    Debug.LogWarning("Other instance of a service locator already exists.");
-            
-        //    return;
-        //}
         Instance = this;
     }
 

@@ -30,6 +30,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform spriteHolder;
 
+    public float GetJumpTimer { get => jumpTimer; }
+    public Rigidbody2D GetRigidBody { get => rigidBody; }
+
     private bool isGrounded;
     private bool wasGrounded;
 
@@ -39,14 +42,14 @@ public class PlayerMovement : MonoBehaviour
 
     private float movementX;
 
-    private Rigidbody2D rb;
+    private Rigidbody2D rigidBody;
     private InputService inputService;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rigidBody = GetComponent<Rigidbody2D>();
 
-        rb.gravityScale = rigidBodyGravityScale;
+        rigidBody.gravityScale = rigidBodyGravityScale;
         currentJumpVelocity = maxJumpVelocity;
 
         isGrounded = GroundCheck();
@@ -105,9 +108,9 @@ public class PlayerMovement : MonoBehaviour
         {
             currentJumpVelocity = maxJumpVelocity * (jumpCutOff + 0.1f);
         }
-        else if (rb.velocity.y > 0)
+        else if (rigidBody.velocity.y > 0)
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * jumpCutOff);
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, rigidBody.velocity.y * jumpCutOff);
         }
     }
 
@@ -150,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void HorizontalMovement()
     {
-        float horizontalVelocity = rb.velocity.x;
+        float horizontalVelocity = rigidBody.velocity.x;
         horizontalVelocity += movementX;
 
         if (Mathf.Abs(movementX) < 0.01f)
@@ -166,11 +169,11 @@ public class PlayerMovement : MonoBehaviour
             horizontalVelocity *= Mathf.Pow(1f - basicHorizontalDamping, Time.deltaTime * 10f);
         }
 
-        rb.velocity = new Vector2(horizontalVelocity, rb.velocity.y);
+        rigidBody.velocity = new Vector2(horizontalVelocity, rigidBody.velocity.y);
     }
     private void Jump(float jumpVelocity)
     {
-        rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
+        rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpVelocity);
 
         jumpTimer = 0;
         groundTimer = 0;
