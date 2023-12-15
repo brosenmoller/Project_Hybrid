@@ -1,25 +1,31 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public enum InputHandlingMethod { Normal = 0, Arduino = 1};
+    [SerializeField] private InputHandlingMethod inputHandlingMethod;
+
     public static GameManager Instance { get; protected set; }
 
     private ServiceLocator serviceLocator;
 
+    public event Action OnSceneChange;
+
     private void Awake()
     {
-        serviceLocator = new ServiceLocator();
-        ServiceSetup();
-
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(gameObject);
+
+            serviceLocator = new ServiceLocator();
+            ServiceSetup();
         }
         else
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 
@@ -38,6 +44,7 @@ public class GameManager : MonoBehaviour
 
     private void OnDisable()
     {
+        serviceLocator?.Disable();
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
@@ -46,18 +53,20 @@ public class GameManager : MonoBehaviour
         serviceLocator.OnSceneLoaded();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        serviceLocator.FixedUpdate();
+        serviceLocator.Update();
     }
 
     public void ReloadScene()
     {
+        OnSceneChange?.Invoke();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void LoadNextScene()
     {
+        OnSceneChange?.Invoke();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

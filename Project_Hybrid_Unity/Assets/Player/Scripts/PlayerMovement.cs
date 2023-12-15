@@ -59,22 +59,18 @@ public class PlayerMovement : MonoBehaviour
     {
         inputService = ServiceLocator.Instance.Get<InputService>();
 
-        inputService.playerInputActions.Gameplay.HorizontalMovement.performed += UpdateMovementDirection;
-        inputService.playerInputActions.Gameplay.HorizontalMovement.canceled += ResetMovementDirection;
-        inputService.playerInputActions.Gameplay.Jump.started += InitiateJump;
-        inputService.playerInputActions.Gameplay.Jump.canceled += CutJumpVelocity;
-    }
-
-    private void OnDisable()
-    {
-        inputService.playerInputActions.Gameplay.HorizontalMovement.performed -= UpdateMovementDirection;
-        inputService.playerInputActions.Gameplay.HorizontalMovement.canceled -= ResetMovementDirection;
-        inputService.playerInputActions.Gameplay.Jump.started -= InitiateJump;
-        inputService.playerInputActions.Gameplay.Jump.canceled -= CutJumpVelocity;
+        //inputService.playerInputActions.Gameplay.HorizontalMovement.performed += UpdateMovementDirection;
+        //inputService.playerInputActions.Gameplay.HorizontalMovement.canceled += ResetMovementDirection;
+        //inputService.playerInputActions.Gameplay.Jump.started += InitiateJump;
+        //inputService.playerInputActions.Gameplay.Jump.canceled += CutJumpVelocity;
+        inputService.JumpStarted += InitiateJump;
+        inputService.JumpCancelled += CutJumpVelocity;
     }
 
     private void Update()
     {
+        SetMovementDirection(inputService.HorizontalAxis);
+
         wasGrounded = isGrounded;
         isGrounded = GroundCheck();
 
@@ -97,12 +93,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void InitiateJump(InputAction.CallbackContext callbackContext)
+    private void InitiateJump()
     {
         jumpTimer = Time.time + jumpDelay;
     }
 
-    private void CutJumpVelocity(InputAction.CallbackContext callbackContext)
+    private void CutJumpVelocity()
     {
         if (jumpTimer > 0) // Release Jumpbutton before touching the ground
         {
