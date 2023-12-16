@@ -1,15 +1,9 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerJump : PlayerAbility
 {
-    [Header("Horizontal Movement Settings")]
-    [SerializeField, Range(0, 1)] private float basicHorizontalDamping = 0.3f;
-    [SerializeField, Range(0, 1)] private float horizontalDampingWhenStopping = 0.5f;
-    [SerializeField, Range(0, 1)] private float horizontalDampingWhenTurning = 0.4f;
-
-    [Header("Vertical Movement Settings")]
+    [Header("Jump Settings")]
     [SerializeField] private float maxJumpVelocity = 18f;
     [SerializeField, Range(0, 1)] float jumpCutOff = 0.5f;
     [SerializeField] private float rigidBodyGravityScale = 4f;
@@ -27,11 +21,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float ySqueeze = 0.8f;
     [SerializeField] private float squeezeDuration = 0.1f;
 
-    [Header("References")]
-    [SerializeField] private Transform spriteHolder;
-
     public float GetJumpTimer { get => jumpTimer; }
-    public Rigidbody2D GetRigidBody { get => rigidBody; }
 
     private bool isGrounded;
     private bool wasGrounded;
@@ -40,36 +30,26 @@ public class PlayerMovement : MonoBehaviour
     private float jumpTimer;
     private float currentJumpVelocity;
 
-    private float movementX;
-
-    private Rigidbody2D rigidBody;
-    private InputService inputService;
-
-    private void Awake()
+    protected override void Initialize()
     {
-        rigidBody = GetComponent<Rigidbody2D>();
-
-        rigidBody.gravityScale = rigidBodyGravityScale;
+        RigidBody.gravityScale = rigidBodyGravityScale;
         currentJumpVelocity = maxJumpVelocity;
 
         isGrounded = GroundCheck();
+
+        InputService.JumpStarted += InitiateJump;
+        InputService.JumpCancelled += CutJumpVelocity;
     }
 
-    private void Start()
+    private void OnDisable()
     {
-        inputService = ServiceLocator.Instance.Get<InputService>();
-
-        //inputService.playerInputActions.Gameplay.HorizontalMovement.performed += UpdateMovementDirection;
-        //inputService.playerInputActions.Gameplay.HorizontalMovement.canceled += ResetMovementDirection;
-        //inputService.playerInputActions.Gameplay.Jump.started += InitiateJump;
-        //inputService.playerInputActions.Gameplay.Jump.canceled += CutJumpVelocity;
-        inputService.JumpStarted += InitiateJump;
-        inputService.JumpCancelled += CutJumpVelocity;
+        InputService.JumpStarted -= InitiateJump;
+        InputService.JumpCancelled -= CutJumpVelocity;
     }
 
     private void Update()
     {
-        SetMovementDirection(inputService.HorizontalAxis);
+        if (!Controller.CanJump) { return; }
 
         wasGrounded = isGrounded;
         isGrounded = GroundCheck();
@@ -104,72 +84,25 @@ public class PlayerMovement : MonoBehaviour
         {
             currentJumpVelocity = maxJumpVelocity * (jumpCutOff + 0.1f);
         }
-        else if (rigidBody.velocity.y > 0)
+        else if (RigidBody.velocity.y > 0)
         {
-            rigidBody.velocity = new Vector2(rigidBody.velocity.x, rigidBody.velocity.y * jumpCutOff);
-        }
-    }
-
-    public void UpdateMovementDirection(InputAction.CallbackContext callbackContext)
-    {
-        SetMovementDirection((int)callbackContext.ReadValue<float>());
-    }
-
-    public void ResetMovementDirection(InputAction.CallbackContext callbackContext)
-    {
-        SetMovementDirection(0);
-    }
-
-    private void SetMovementDirection(int newMovementX)
-    {
-        movementX = newMovementX;
-        FlipSprite(movementX);
-    }
-
-    private void FlipSprite(float movementX)
-    {
-        if (movementX == 1)
-        {
-            spriteHolder.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
-        }
-        else if (movementX == -1)
-        {
-            spriteHolder.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            RigidBody.velocity = new Vector2(RigidBody.velocity.x, RigidBody.velocity.y * jumpCutOff);
         }
     }
 
     private void FixedUpdate()
     {
-        HorizontalMovement();
+        if (!Controller.CanMove || !Controller.CanJump) { return; }
+
         if (jumpTimer > Time.time && (groundTimer > Time.time || isGrounded))
         {
             Jump(currentJumpVelocity);
         }
     }
 
-    private void HorizontalMovement()
-    {
-        float horizontalVelocity = rigidBody.velocity.x;
-        horizontalVelocity += movementX;
-
-        if (Mathf.Abs(movementX) < 0.01f)
-        {
-            horizontalVelocity *= Mathf.Pow(1f - horizontalDampingWhenStopping, Time.deltaTime * 10f);
-        }
-        else if (Mathf.Sign(movementX) != Mathf.Sign(horizontalVelocity))
-        {
-            horizontalVelocity *= Mathf.Pow(1f - horizontalDampingWhenTurning, Time.deltaTime * 10f);
-        }
-        else
-        {
-            horizontalVelocity *= Mathf.Pow(1f - basicHorizontalDamping, Time.deltaTime * 10f);
-        }
-
-        rigidBody.velocity = new Vector2(horizontalVelocity, rigidBody.velocity.y);
-    }
     private void Jump(float jumpVelocity)
     {
-        rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpVelocity);
+        RigidBody.velocity = new Vector2(RigidBody.velocity.x, jumpVelocity);
 
         jumpTimer = 0;
         groundTimer = 0;
@@ -196,16 +129,16 @@ public class PlayerMovement : MonoBehaviour
         while (time <= 1.0)
         {
             time += Time.deltaTime / seconds;
-            spriteHolder.localScale = Vector3.Lerp(originalSize, newSize, time);
-            spriteHolder.localPosition = Vector3.Lerp(oldPos, newPos, time);
+            SpriteHolder.localScale = Vector3.Lerp(originalSize, newSize, time);
+            SpriteHolder.localPosition = Vector3.Lerp(oldPos, newPos, time);
             yield return null;
         }
         time = 0f;
         while (time <= 1.0)
         {
             time += Time.deltaTime / seconds;
-            spriteHolder.localScale = Vector3.Lerp(newSize, originalSize, time);
-            spriteHolder.localPosition = Vector3.Lerp(newPos, oldPos, time);
+            SpriteHolder.localScale = Vector3.Lerp(newSize, originalSize, time);
+            SpriteHolder.localPosition = Vector3.Lerp(newPos, oldPos, time);
             yield return null;
         }
     }
@@ -217,3 +150,4 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawRay((transform.position - colliderWidth) + colliderOffset, Vector2.down * groundDistance);
     }
 }
+

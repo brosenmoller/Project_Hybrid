@@ -16,7 +16,7 @@ public class DeathTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.TryGetComponent(out PlayerMovement playerMovement))
+        if (other.gameObject.TryGetComponent(out PlayerController player))
         {
             GameManager.Instance.ReloadScene();
         }

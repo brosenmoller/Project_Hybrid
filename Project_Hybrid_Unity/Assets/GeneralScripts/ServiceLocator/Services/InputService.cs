@@ -22,16 +22,29 @@ public class InputService : Service
     public event Action CrouchStarted;
     public event Action CrouchCancelled;
 
-    public int HorizontalAxis { get { return horizontalAxis; } }
+    public int HorizontalAxis { 
+        get { return horizontalAxis; }
+        private set 
+        { 
+            horizontalAxis = value; 
+            if (horizontalAxis != 0) { direction = horizontalAxis; } 
+        }
+    }
     private int horizontalAxis = 0;
     public int Direction { get { return direction; } }
     private int direction = 1;
 
     private bool jumpPressed = false;
-    private bool jumpWasPressed = false;
-
     private bool jumpStartedEvent = false;
     private bool jumpCancelledEvent = false;
+
+    private bool crouchPressed = false;
+    private bool crouchStartedEvent = false;
+    private bool crouchCancelledEvent = false;
+
+    private bool attackStartedEvent = false;
+
+    private bool dashStartedEvent = false;
 
     private Thread arduinoThread;
     private bool arduinoThreadTerminated = false;
@@ -59,13 +72,21 @@ public class InputService : Service
         playerInputActions.Gameplay.HorizontalMovement.canceled += ResetMovementDirection;
         playerInputActions.Gameplay.Jump.started += JumpStartedEvent;
         playerInputActions.Gameplay.Jump.canceled += JumpCancelledEvent;
+        playerInputActions.Gameplay.Crouch.started += CrouchStartedEvent;
+        playerInputActions.Gameplay.Crouch.canceled += CrouchCancelledEvent;
+        playerInputActions.Gameplay.Attack.started += AttackStartedEvent;
+        playerInputActions.Gameplay.Dash.started += DashStartedEvent;
     }
 
-    public void UpdateMovementDirection(InputAction.CallbackContext callbackContext) => horizontalAxis = (int)callbackContext.ReadValue<float>();
+    public void UpdateMovementDirection(InputAction.CallbackContext callbackContext) => HorizontalAxis = (int)callbackContext.ReadValue<float>();
 
-    public void ResetMovementDirection(InputAction.CallbackContext callbackContext) => horizontalAxis = 0;
+    public void ResetMovementDirection(InputAction.CallbackContext callbackContext) => HorizontalAxis = 0;
     public void JumpStartedEvent(InputAction.CallbackContext callbackContext) => JumpStarted?.Invoke();
     public void JumpCancelledEvent(InputAction.CallbackContext callbackContext) => JumpCancelled?.Invoke();
+    public void CrouchStartedEvent(InputAction.CallbackContext callbackContext) => CrouchStarted?.Invoke();
+    public void CrouchCancelledEvent(InputAction.CallbackContext callbackContext) => CrouchCancelled?.Invoke();
+    public void AttackStartedEvent(InputAction.CallbackContext callbackContext) => AttackStarted?.Invoke();
+    public void DashStartedEvent(InputAction.CallbackContext callbackContext) => DashStarted?.Invoke();
 
     private void SetupArduinoInput()
     {
@@ -101,27 +122,42 @@ public class InputService : Service
     {
         while (!arduinoThreadTerminated)
         {
-            jumpWasPressed = jumpPressed;
+            bool jumpWasPressed = jumpPressed;
             jumpPressed = false;
-            horizontalAxis = 0;
 
+            bool crouchWasPressed = crouchPressed;
+            crouchPressed = false;
+
+            HorizontalAxis = 0;
 
             if (serialPort.IsOpen)
             {
                 try
                 {
                     int inputFlag = serialPort.ReadByte();
-                    if ((inputFlag & 1 << 0) != 0)
+                    if ((inputFlag & 1 << 0) != 0) // Left
                     {
-                        horizontalAxis -= 1;
+                        HorizontalAxis -= 1;
                     }
-                    if ((inputFlag & 1 << 1) != 0)
+                    if ((inputFlag & 1 << 1) != 0) // Right
                     {
-                        horizontalAxis += 1;
+                        HorizontalAxis += 1;
                     }
-                    if ((inputFlag & 1 << 2) != 0)
+                    if ((inputFlag & 1 << 2) != 0) // Jump
                     {
                         jumpPressed = true;
+                    }
+                    if ((inputFlag & 1 << 3) != 0) // Crouch
+                    {
+                        crouchPressed = true;
+                    }
+                    if ((inputFlag & 1 << 4) != 0) // Attack
+                    {
+                        attackStartedEvent = true;
+                    }
+                    if ((inputFlag & 1 << 5) != 0) // Dash
+                    {
+                        dashStartedEvent = true;
                     }
                 }
                 catch (Exception) { }
@@ -134,6 +170,15 @@ public class InputService : Service
             else if (jumpWasPressed && !jumpPressed)
             {
                 jumpCancelledEvent = true;
+            }
+
+            if (crouchPressed && !crouchWasPressed)
+            {
+                crouchStartedEvent = true;
+            }
+            else if (crouchWasPressed && !crouchPressed)
+            {
+                crouchCancelledEvent = true;
             }
 
             Thread.Sleep(10);
@@ -159,6 +204,29 @@ public class InputService : Service
         {
             jumpCancelledEvent = false;
             JumpCancelled?.Invoke();
+        }
+
+        if (crouchStartedEvent)
+        {
+            crouchStartedEvent = false;
+            CrouchStarted?.Invoke();
+        }
+        if (crouchCancelledEvent)
+        {
+            crouchCancelledEvent = false;
+            CrouchCancelled?.Invoke();
+        }
+
+        if (attackStartedEvent)
+        {
+            attackStartedEvent = false;
+            AttackStarted?.Invoke();
+        }
+
+        if (dashStartedEvent)
+        {
+            dashStartedEvent = false;
+            DashStarted?.Invoke();
         }
     }
 }

@@ -18,34 +18,34 @@ public class JumpPad : MonoBehaviour
 
     private float postBounceTimer;
 
-    private PlayerMovement player;
+    private PlayerJump player;
 
     private void Awake()
     {
-        player = FindObjectOfType<PlayerMovement>();
+        player = FindObjectOfType<PlayerJump>();
     }
 
     private void Update()
     {
         if (postBounceTimer > Time.time && player.GetJumpTimer > Time.time)
         {
-            player.GetRigidBody.velocity = new Vector2(player.GetRigidBody.velocity.x, jumpForce - (bounceForce *  startPostBounceTimer));
+            player.RigidBody.velocity = new Vector2(player.RigidBody.velocity.x, jumpForce - (bounceForce *  startPostBounceTimer));
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out PlayerMovement playerMovement))
+        if (collision.gameObject.TryGetComponent(out PlayerJump playerJump))
         {
             StartCoroutine(JumpSqueeze(xSqueeze, ySqueeze, squeezeDuration));
 
             if (player.GetJumpTimer > Time.time)
             {
-                player.GetRigidBody.velocity = new Vector2(player.GetRigidBody.velocity.x, jumpForce);
+                player.RigidBody.velocity = new Vector2(player.RigidBody.velocity.x, jumpForce);
             } else
             {
                 postBounceTimer = Time.time + startPostBounceTimer;
-                player.GetRigidBody.velocity = new Vector2(player.GetRigidBody.velocity.x, bounceForce);
+                player.RigidBody.velocity = new Vector2(player.RigidBody.velocity.x, bounceForce);
             }
         }
     }

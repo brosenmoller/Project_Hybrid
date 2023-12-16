@@ -17,12 +17,12 @@ public:
   byte bitFlag;
 };
 
-Input left(   5100,   0b1);
-Input right(  10000,   0b10);
-Input jump(   20000,  0b100);
-Input crouch( 51000,  0b1000);
-Input attack( 68000,  0b10000);
-Input dash(   100000,  0b100000);
+Input left    (5100,   0b1);
+Input right   (10000,  0b10);
+Input jump    (20000,  0b100);
+Input crouch  (51000,  0b1000);
+Input attack  (68000,  0b10000);
+Input dash    (100000, 0b100000);
 
 const int inputLength = 6;
 Input inputList[inputLength] = { left, right, jump, crouch, attack, dash };
