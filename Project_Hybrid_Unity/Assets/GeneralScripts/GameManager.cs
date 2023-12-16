@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public enum InputHandlingMethod { Normal = 0, Arduino = 1};
     [SerializeField] private InputHandlingMethod inputHandlingMethod;
 
     public static GameManager Instance { get; protected set; }
@@ -31,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     private void ServiceSetup()
     {
-        serviceLocator.Add(new InputService());
+        serviceLocator.Add(new InputService(inputHandlingMethod));
         serviceLocator.Add(new TimerService());
         serviceLocator.Add(new AudioService());
         serviceLocator.Add(new EventService());

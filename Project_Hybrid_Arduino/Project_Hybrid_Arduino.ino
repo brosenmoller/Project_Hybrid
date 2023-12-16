@@ -2,8 +2,8 @@ const int voltageIn = 5;
 const float referenceResistance = 100000;
 const float errorMargin = 2000;
 
-const int amountOfAnalogPins = 1;
-int analogPins[amountOfAnalogPins] = {0};
+const int amountOfAnalogPins = 2;
+int analogPins[amountOfAnalogPins] = {0, 1};
 
 class Input {
 public:
@@ -67,23 +67,24 @@ void loop(){
       }
     }
   }
-  if (bitFlag != 0)
-  {
+
+  if (bitFlag != 0){
     Serial.flush();
     Serial.write(bitFlag);
-    
-    // if (bitFlag & jump.bitFlag)
-    // {
-    //   Serial.println("Jump");
-    // }
-    // if (bitFlag & right.bitFlag)
-    // {
-    //   Serial.println("Right");
-    // }
-    // if (bitFlag & left.bitFlag)
-    // {
-    //   Serial.println("Left");
-    // }
   }
   delay(10);
+  
+  // if (bitFlag & jump.bitFlag)
+  // {
+  //   Serial.println("Jump");
+  // }
+  // if (bitFlag & right.bitFlag)
+  // {
+  //   Serial.println("Right");
+  // }
+  // if (bitFlag & left.bitFlag)
+  // {
+  //   Serial.println("Left");
+  // }
+  
 }
