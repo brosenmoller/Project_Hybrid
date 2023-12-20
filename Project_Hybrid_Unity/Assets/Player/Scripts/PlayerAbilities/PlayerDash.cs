@@ -36,7 +36,6 @@ public class PlayerDash : PlayerAbility
         Controller.CanMove = false;
         canDash = false;
 
-
         yield return new WaitForSeconds(dashActiveTime);
 
         RigidBody.gravityScale = rigidBodyGravityScale;
