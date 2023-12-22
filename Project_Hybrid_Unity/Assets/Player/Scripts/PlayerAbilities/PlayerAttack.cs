@@ -8,7 +8,6 @@ public class PlayerAttack : PlayerAbility
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRadius;
     [SerializeField] private float attackOffset;
-    [SerializeField] private LayerMask enemyLayer;
 
     private float attackCooldown;
 

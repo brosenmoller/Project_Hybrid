@@ -11,6 +11,7 @@ public class PlayerCrouch : PlayerAbility
     private Vector2 colliderDefaultOffset;
     private Vector2 colliderDefaultSize;
 
+    private CapsuleCollider2D capsuleCollider;
     private BoxCollider2D boxCollider;
 
     private Coroutine cancelCrouchRoutine;
@@ -19,10 +20,11 @@ public class PlayerCrouch : PlayerAbility
 
     protected override void Initialize()
     {
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
         boxCollider = GetComponent<BoxCollider2D>();
 
-        colliderDefaultOffset = boxCollider.offset;
-        colliderDefaultSize = boxCollider.size;
+        colliderDefaultOffset = capsuleCollider.offset;
+        colliderDefaultSize = capsuleCollider.size;
 
         InputService.CrouchStarted += StartCrouch;
         InputService.CrouchCancelled += CancelCrouch;
@@ -39,8 +41,9 @@ public class PlayerCrouch : PlayerAbility
         if (!crouchCancelled) { return; }
 
         StartCoroutine(Squeeze(new Vector3(1.5f, 0.5f, 1f), new Vector3(1, 1, 1), Vector3.zero, new Vector3(0, -0.25f, 0), .2f));
-        boxCollider.size = colliderSize;
-        boxCollider.offset = colliderOffset;
+        capsuleCollider.size = colliderSize;
+        capsuleCollider.offset = colliderOffset;
+        boxCollider.enabled = false;
         Controller.CanJump = false;
         crouchCancelled = false;
 
@@ -71,8 +74,11 @@ public class PlayerCrouch : PlayerAbility
 
 
         StartCoroutine(Squeeze(new Vector3(1f, 1f, 1f), new Vector3(1.5f, 0.5f, 1), new Vector3(0, -0.25f, 0), Vector3.zero, .2f));
-        boxCollider.size = colliderDefaultSize;
-        boxCollider.offset = colliderDefaultOffset;
+
+        capsuleCollider.size = colliderDefaultSize;
+        capsuleCollider.offset = colliderDefaultOffset;
+        boxCollider.enabled = true;
+
         Controller.CanJump = true;
         crouchCancelled = true;
     }

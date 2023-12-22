@@ -8,7 +8,7 @@ public enum InputHandlingMethod { Normal = 0, Arduino = 1 };
 public class InputService : Service
 {
     private PlayerControls playerInputActions;
-    private InputHandlingMethod inputHandlingMethod;
+    private readonly InputHandlingMethod inputHandlingMethod;
 
     private readonly SerialPort serialPort = new("COM3", 9600);
 

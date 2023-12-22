@@ -3,6 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class DeathTrigger : MonoBehaviour
 {
+    private bool died = false;
+
 #if UNITY_EDITOR
     private void Awake()
     {
@@ -16,9 +18,12 @@ public class DeathTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (died) { return; }
+
         if (other.gameObject.TryGetComponent(out PlayerController player))
         {
-            GameManager.Instance.ReloadScene();
+            died = true;
+            player.Death();
         }
     }
 }

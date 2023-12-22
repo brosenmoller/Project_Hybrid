@@ -22,7 +22,7 @@ public class PlayerDash : PlayerAbility
 
     private void StartDash()
     {
-        if (canDash && InputService.HorizontalAxis != 0)
+        if (canDash)
         {
             StartCoroutine(Dashing());
         }
@@ -30,7 +30,7 @@ public class PlayerDash : PlayerAbility
 
     private IEnumerator Dashing()
     {
-        RigidBody.velocity = new Vector2(InputService.HorizontalAxis * dashForce, 0);
+        RigidBody.velocity = new Vector2(InputService.Direction * dashForce, 0);
         float rigidBodyGravityScale = RigidBody.gravityScale;
         RigidBody.gravityScale = 0;
         Controller.CanMove = false;

@@ -7,22 +7,19 @@ public class RoomController : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private GameObject roomContents;
     [SerializeField] private PolygonCollider2D frameCollider;
-    private PolygonCollider2D loadCollider;
+    public Transform playerSpawnPoint;
 
     private Collider2D playerCollider;
     private PlayerController playerController;
+
+    private int roomIndex;
 
     private void Awake()
     {
        playerController = FindObjectOfType<PlayerController>();
        playerCollider = playerController.GetComponent<Collider2D>();
-       loadCollider = GetComponent<PolygonCollider2D>();
-    }
 
-    private void Start()
-    {
-        //if (loadCollider.IsTouching(playerCollider)) { roomContents.SetActive(true); }
-        //else { roomContents.SetActive(false); }
+        roomIndex = transform.GetSiblingIndex();
     }
 
     private void Update()
@@ -30,31 +27,10 @@ public class RoomController : MonoBehaviour
         if (frameCollider.IsTouching(playerCollider))
         {
             virtualCamera.Priority = 1;
+            playerController.SetRoomIndex(roomIndex);
         }
         else { virtualCamera.Priority = 0; }
     }
-
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (player.TryGetComponent(out PlayerController playerController))
-    //    {
-    //        roomContents.SetActive(true);
-    //        CancelInvoke(nameof(DeactivateRoom));
-    //    }
-    //}
-
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    if (player.TryGetComponent(out PlayerController playerController))
-    //    {
-    //        Invoke(nameof(DeactivateRoom), 2f);
-    //    }
-    //}
-
-    //private void DeactivateRoom()
-    //{
-    //    roomContents.SetActive(false);
-    //}
 
     private void OnDrawGizmos()
     {

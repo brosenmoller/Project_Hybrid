@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private InputHandlingMethod inputHandlingMethod;
+    [SerializeField] private int setRoomIndexTo;
 
     public static GameManager Instance { get; protected set; }
 
@@ -55,6 +56,16 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         serviceLocator.Update();
+    }
+
+    public void DeleteAllSaves()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
+    public void SetRoomIndex()
+    {
+        PlayerPrefs.SetInt(PlayerController.ROOM_SAVE_STRING, setRoomIndexTo);
     }
 
     public void ReloadScene()
