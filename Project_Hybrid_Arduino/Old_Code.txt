@@ -1,0 +1,49 @@
+const int analogPin = 0;
+int raw = 0;
+int voltageIn = 5;
+float voltageDrop = 0;
+float resistance1 = 100000;
+float resistance2 = 0;
+float buffer = 0;
+float errorMargin = 800;
+
+const float jump = 6800;
+const float right = 10000;
+const float left = 5100;
+
+void setup(){
+	Serial.begin(9600);
+}
+
+void loop(){
+  raw = analogRead(analogPin);
+  resistance2 = 0;
+  if(raw){
+    buffer = raw * voltageIn;
+    voltageDrop = (buffer)/1024.0;
+    buffer = (voltageIn / voltageDrop) - 1;
+    resistance2 = resistance1 * buffer;
+    // Serial.print("Voltage Drop: ");
+    // Serial.println(voltageDrop);
+    // Serial.print("Resitance 2: ");
+    // Serial.println(resistance2);
+    // delay(1000);
+  }
+  
+  if (resistance2 > jump - errorMargin && 
+      resistance2 < jump + errorMargin)
+  {
+  	Serial.println("Jump");
+  }
+  else if (resistance2 > right - errorMargin && 
+      	   resistance2 < right + errorMargin)
+  {
+  	Serial.println("Right");
+  }
+  else if (resistance2 > left - errorMargin && 
+      	   resistance2 < left + errorMargin)
+  {
+  	Serial.println("Left");
+  }
+}
+

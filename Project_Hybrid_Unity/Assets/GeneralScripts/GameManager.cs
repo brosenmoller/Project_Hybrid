@@ -1,31 +1,37 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private InputHandlingMethod inputHandlingMethod;
+    [SerializeField] private int setRoomIndexTo;
+
     public static GameManager Instance { get; protected set; }
 
     private ServiceLocator serviceLocator;
 
+    public event Action OnSceneChange;
+
     private void Awake()
     {
-        serviceLocator = new ServiceLocator();
-        ServiceSetup();
-
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(gameObject);
+
+            serviceLocator = new ServiceLocator();
+            ServiceSetup();
         }
         else
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 
     private void ServiceSetup()
     {
-        serviceLocator.Add(new InputService());
+        serviceLocator.Add(new InputService(inputHandlingMethod));
         serviceLocator.Add(new TimerService());
         serviceLocator.Add(new AudioService());
         serviceLocator.Add(new EventService());
@@ -38,6 +44,7 @@ public class GameManager : MonoBehaviour
 
     private void OnDisable()
     {
+        serviceLocator?.Disable();
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
@@ -46,18 +53,30 @@ public class GameManager : MonoBehaviour
         serviceLocator.OnSceneLoaded();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        serviceLocator.FixedUpdate();
+        serviceLocator.Update();
+    }
+
+    public void DeleteAllSaves()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
+    public void SetRoomIndex()
+    {
+        PlayerPrefs.SetInt(PlayerController.ROOM_SAVE_STRING, setRoomIndexTo);
     }
 
     public void ReloadScene()
     {
+        OnSceneChange?.Invoke();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void LoadNextScene()
     {
+        OnSceneChange?.Invoke();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

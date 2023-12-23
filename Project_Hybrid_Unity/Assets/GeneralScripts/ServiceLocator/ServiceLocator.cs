@@ -59,11 +59,19 @@ public class ServiceLocator : IServiceLocator
         }
     }
 
-    public void FixedUpdate()
+    public void Update()
     {
         foreach (Service service in services.Values)
         {
-            service.OnFixedUpdate();
+            service.OnUpdate();
+        }
+    }
+
+    public void Disable()
+    {
+        foreach (Service service in services.Values)
+        {
+            service.OnDisable();
         }
     }
 }
