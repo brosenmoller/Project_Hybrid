@@ -107,9 +107,9 @@ MonoBehaviour:
   rigidBodyGravityScale: 4
   jumpDelay: 0.15
   groundDelay: 0.15
-  colliderWidth: {x: 0.59, y: 0, z: 0}
+  colliderWidth: {x: 0.5999, y: 0, z: 0}
   colliderOffset: {x: 0, y: 0, z: 0}
-  groundDistance: 0.63
+  groundDistance: 0.62
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -168,9 +168,6 @@ MonoBehaviour:
   attackPoint: {fileID: 733668452787507185}
   attackRadius: 1
   attackOffset: 1
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &1993337898988709095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64ebad854782094409680034537ba9ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rooms: {fileID: 0}
 --- !u!70 &3630169144276282822
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
