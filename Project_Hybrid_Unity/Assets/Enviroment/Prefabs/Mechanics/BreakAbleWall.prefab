@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 844301873
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 177845202, guid: f1c9f8471cde3084e98106bb0363a7d0, type: 3}
+  m_Sprite: {fileID: 1897470281, guid: 7f0ae8920d5ab794286783b7418c18d9, type: 3}
   m_Color: {r: 0.49685526, g: 0.49685526, b: 0.49685526, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -291,7 +291,7 @@ SpriteRenderer:
   m_SortingLayerID: 844301873
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 177845202, guid: f1c9f8471cde3084e98106bb0363a7d0, type: 3}
+  m_Sprite: {fileID: 1301429808, guid: 7f0ae8920d5ab794286783b7418c18d9, type: 3}
   m_Color: {r: 0.49685526, g: 0.49685526, b: 0.49685526, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -375,7 +375,7 @@ SpriteRenderer:
   m_SortingLayerID: 844301873
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 177845202, guid: f1c9f8471cde3084e98106bb0363a7d0, type: 3}
+  m_Sprite: {fileID: 2007733871, guid: 7f0ae8920d5ab794286783b7418c18d9, type: 3}
   m_Color: {r: 0.49685526, g: 0.49685526, b: 0.49685526, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -459,7 +459,7 @@ SpriteRenderer:
   m_SortingLayerID: 844301873
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 177845202, guid: f1c9f8471cde3084e98106bb0363a7d0, type: 3}
+  m_Sprite: {fileID: 1897470281, guid: 7f0ae8920d5ab794286783b7418c18d9, type: 3}
   m_Color: {r: 0.49685526, g: 0.49685526, b: 0.49685526, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -543,7 +543,7 @@ SpriteRenderer:
   m_SortingLayerID: 844301873
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1635909511, guid: f1c9f8471cde3084e98106bb0363a7d0, type: 3}
+  m_Sprite: {fileID: 1301429808, guid: 7f0ae8920d5ab794286783b7418c18d9, type: 3}
   m_Color: {r: 0.49685526, g: 0.49685526, b: 0.49685526, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -627,7 +627,7 @@ SpriteRenderer:
   m_SortingLayerID: 844301873
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1635909511, guid: f1c9f8471cde3084e98106bb0363a7d0, type: 3}
+  m_Sprite: {fileID: 2007733871, guid: 7f0ae8920d5ab794286783b7418c18d9, type: 3}
   m_Color: {r: 0.49685526, g: 0.49685526, b: 0.49685526, a: 1}
   m_FlipX: 0
   m_FlipY: 0
