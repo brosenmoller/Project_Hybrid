@@ -25,6 +25,7 @@ public class PlayerAttack : PlayerAbility
     {
         if (attackCooldown <= Time.time)
         {
+
             attackCooldown = startAttackCooldown + Time.time;
 
             Collider2D[] colliders = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius);
