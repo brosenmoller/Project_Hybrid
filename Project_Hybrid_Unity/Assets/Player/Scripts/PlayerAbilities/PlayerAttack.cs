@@ -8,6 +8,7 @@ public class PlayerAttack : PlayerAbility
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRadius;
     [SerializeField] private float attackOffset;
+    [SerializeField] private GameObject attackAnimation;
 
     private float attackCooldown;
 
@@ -25,7 +26,10 @@ public class PlayerAttack : PlayerAbility
     {
         if (attackCooldown <= Time.time)
         {
-
+            Transform rotationPlayer = transform.GetChild(0);
+            GameObject attackGbj = Instantiate(attackAnimation, attackPoint.position,rotationPlayer.transform.rotation);
+            attackGbj.transform.parent = attackPoint.transform;
+            
             attackCooldown = startAttackCooldown + Time.time;
 
             Collider2D[] colliders = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius);
