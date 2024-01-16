@@ -16312,17 +16312,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3945587599992516632, guid: 5fdcbfa365bc17a4a851b61e07d65fca, type: 3}
   m_PrefabInstance: {fileID: 282885312}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &282885315 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3849837032037991783, guid: 5fdcbfa365bc17a4a851b61e07d65fca, type: 3}
-  m_PrefabInstance: {fileID: 282885312}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 895f03ee8b9c8084eb5d065bdc7ae725, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &310253608
 GameObject:
   m_ObjectHideFlags: 0
@@ -23642,19 +23631,7 @@ MonoBehaviour:
       m_Calls: []
   OnExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 282885315}
-        m_TargetAssemblyTypeName: LavaRise, Assembly-CSharp
-        m_MethodName: StartRise
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   disableAfterActivation: 0
 --- !u!61 &723639529
 BoxCollider2D:
@@ -53081,17 +53058,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fdcbfa365bc17a4a851b61e07d65fca, type: 3}
---- !u!114 &1447531677 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3849837032037991783, guid: 5fdcbfa365bc17a4a851b61e07d65fca, type: 3}
-  m_PrefabInstance: {fileID: 1447531676}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 895f03ee8b9c8084eb5d065bdc7ae725, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1477607306
 GameObject:
   m_ObjectHideFlags: 0
@@ -81818,19 +81784,7 @@ MonoBehaviour:
         m_CallState: 2
   OnExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1447531677}
-        m_TargetAssemblyTypeName: LavaRise, Assembly-CSharp
-        m_MethodName: StartRise
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   disableAfterActivation: 0
 --- !u!61 &1925527170
 BoxCollider2D:

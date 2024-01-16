@@ -9,15 +9,25 @@ public class LavaRise : MonoBehaviour
     [SerializeField] private bool autoStart;
 
     private bool riseIsStopped = true;
+    private Animator sandAnimator;
 
     private void Awake()
     {
+        sandAnimator = GetComponentInChildren<Animator>();
+
         riseIsStopped = !autoStart;
+
+        if (!riseIsStopped)
+        {
+            sandAnimator.SetBool("Rising", true);
+        }
+
         transform.localPosition = new Vector3(transform.localPosition.x, startPosition, transform.localPosition.z);
     }
 
     public void StartRise()
     {
+        sandAnimator.SetBool("Rising", true);
         riseIsStopped = false;
     }
 
