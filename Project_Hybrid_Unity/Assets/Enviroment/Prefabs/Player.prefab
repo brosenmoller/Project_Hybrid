@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpriteHolder: {fileID: 413772199258741252}
-  basicHorizontalDamping: 0.3
+  basicHorizontalDamping: 0.25
   horizontalDampingWhenStopping: 0.5
   horizontalDampingWhenTurning: 0.4
 --- !u!114 &6619154722671324592
@@ -116,6 +116,9 @@ MonoBehaviour:
   xSqueeze: 1.2
   ySqueeze: 0.8
   squeezeDuration: 0.1
+  inAirPhysicsMaterial: {fileID: 6200000, guid: 661a3897ede525843a97def83eed9bfd, type: 2}
+  capsuleCollider: {fileID: 3630169144276282822}
+  boxCollider: {fileID: 6410711953479761803}
 --- !u!114 &5495961153727718966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +194,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 225438221026251370}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 661a3897ede525843a97def83eed9bfd, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -233,7 +236,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 4
-  m_Material: {fileID: 6200000, guid: 661a3897ede525843a97def83eed9bfd, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

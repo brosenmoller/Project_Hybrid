@@ -21,6 +21,11 @@ public class PlayerJump : PlayerAbility
     [SerializeField] private float ySqueeze = 0.8f;
     [SerializeField] private float squeezeDuration = 0.1f;
 
+    [Header("Physics Material")]
+    [SerializeField] private PhysicsMaterial2D inAirPhysicsMaterial;
+    [SerializeField] private CapsuleCollider2D capsuleCollider;
+    [SerializeField] private BoxCollider2D boxCollider;
+
     public float GetJumpTimer { get => jumpTimer; }
 
     private bool isGrounded;
@@ -59,17 +64,20 @@ public class PlayerJump : PlayerAbility
         {
             groundTimer = Time.time + groundDelay;
             wasGrounded = false;
+
+            RigidBody.sharedMaterial = inAirPhysicsMaterial;
+            boxCollider.sharedMaterial = inAirPhysicsMaterial;
+            capsuleCollider.sharedMaterial = inAirPhysicsMaterial;
         }
 
         // landing
         if (!wasGrounded && isGrounded)
         {
-            StartCoroutine(JumpSqueeze(xSqueeze, ySqueeze, squeezeDuration));
+            RigidBody.sharedMaterial = null;
+            boxCollider.sharedMaterial = null;
+            capsuleCollider.sharedMaterial = null;
 
-            if (groundTimer < Time.time - groundDelay)
-            {
-                //Posible Land animation
-            }
+            StartCoroutine(JumpSqueeze(xSqueeze, ySqueeze, squeezeDuration));
         }
     }
 
