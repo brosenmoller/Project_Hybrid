@@ -168,6 +168,7 @@ MonoBehaviour:
   attackPoint: {fileID: 733668452787507185}
   attackRadius: 1
   attackOffset: 1
+  attackAnimation: {fileID: 0}
 --- !u!114 &1993337898988709095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,7 +259,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

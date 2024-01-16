@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 46646689}
   - component: {fileID: 46646691}
   - component: {fileID: 46646690}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LavaActivator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4663,7 +4663,7 @@ GameObject:
   - component: {fileID: 58557977}
   - component: {fileID: 58557979}
   - component: {fileID: 58557978}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LavaActivator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17734,7 +17734,7 @@ GameObject:
   - component: {fileID: 655714298}
   - component: {fileID: 655714300}
   - component: {fileID: 655714299}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LavaActivator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17855,7 +17855,7 @@ GameObject:
   - component: {fileID: 664899303}
   - component: {fileID: 664899305}
   - component: {fileID: 664899304}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LavaActivator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23603,7 +23603,7 @@ GameObject:
   - component: {fileID: 723639527}
   - component: {fileID: 723639529}
   - component: {fileID: 723639528}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LavaActivator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28943,7 +28943,7 @@ GameObject:
   - component: {fileID: 946219044}
   - component: {fileID: 946219046}
   - component: {fileID: 946219045}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LavaActivator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63484,7 +63484,7 @@ GameObject:
   - component: {fileID: 1563534962}
   - component: {fileID: 1563534964}
   - component: {fileID: 1563534963}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LavaActivator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81761,7 +81761,7 @@ GameObject:
   - component: {fileID: 1925527168}
   - component: {fileID: 1925527170}
   - component: {fileID: 1925527169}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LavaActivator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
