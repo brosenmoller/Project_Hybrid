@@ -107,7 +107,7 @@ MonoBehaviour:
   rigidBodyGravityScale: 4
   jumpDelay: 0.15
   groundDelay: 0.1
-  colliderWidth: {x: 0.5999, y: 0, z: 0}
+  colliderWidth: {x: 0.595, y: 0, z: 0}
   colliderOffset: {x: 0, y: 0, z: 0}
   groundDistance: 0.62
   groundLayer:
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpriteHolder: {fileID: 413772199258741252}
   colliderOffset: {x: 0, y: -0.25}
-  colliderSize: {x: 1, y: 0.5}
+  colliderSize: {x: 0.999, y: 0.5}
   groundMask:
     serializedVersion: 2
     m_Bits: 8
@@ -218,7 +218,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.0001, y: 1}
   m_Direction: 1
 --- !u!50 &4198913633473703552
 Rigidbody2D:
@@ -279,7 +279,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.0069860965}
+  m_Offset: {x: 0, y: 0.007}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -290,7 +290,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.98602784}
+  m_Size: {x: 1, y: 0.999}
   m_EdgeRadius: 0
 --- !u!1 &319333990299669985
 GameObject:
