@@ -102,11 +102,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpriteHolder: {fileID: 413772199258741252}
-  maxJumpVelocity: 18
+  maxJumpVelocity: 17
   jumpCutOff: 0.5
   rigidBodyGravityScale: 4
   jumpDelay: 0.15
-  groundDelay: 0.15
+  groundDelay: 0.1
   colliderWidth: {x: 0.5999, y: 0, z: 0}
   colliderOffset: {x: 0, y: 0, z: 0}
   groundDistance: 0.62
@@ -166,8 +166,8 @@ MonoBehaviour:
   damgeOutput: 10
   startAttackCooldown: 0.2
   attackPoint: {fileID: 733668452787507185}
-  attackRadius: 1
-  attackOffset: 1
+  attackRadius: 1.4
+  attackOffset: 1.5
   attackAnimation: {fileID: 0}
 --- !u!114 &1993337898988709095
 MonoBehaviour:

@@ -28623,6 +28623,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 1264757697}
     m_Modifications:
     - target: {fileID: 2553386705180420819, guid: 4679c0345ab0e8645b5304bb5efdd6de, type: 3}
+      propertyPath: pointA
+      value: 
+      objectReference: {fileID: 1724422825}
+    - target: {fileID: 2553386705180420819, guid: 4679c0345ab0e8645b5304bb5efdd6de, type: 3}
+      propertyPath: pointB
+      value: 
+      objectReference: {fileID: 431473037}
+    - target: {fileID: 2553386705180420819, guid: 4679c0345ab0e8645b5304bb5efdd6de, type: 3}
       propertyPath: _pointA
       value: 
       objectReference: {fileID: 1724422825}
@@ -28708,6 +28716,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 98448693}
     m_Modifications:
+    - target: {fileID: 2553386705180420819, guid: 4679c0345ab0e8645b5304bb5efdd6de, type: 3}
+      propertyPath: pointA
+      value: 
+      objectReference: {fileID: 250692716}
+    - target: {fileID: 2553386705180420819, guid: 4679c0345ab0e8645b5304bb5efdd6de, type: 3}
+      propertyPath: pointB
+      value: 
+      objectReference: {fileID: 380645360}
     - target: {fileID: 2553386705180420819, guid: 4679c0345ab0e8645b5304bb5efdd6de, type: 3}
       propertyPath: _pointA
       value: 
@@ -69373,7 +69389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputHandlingMethod: 0
-  setRoomIndexTo: 6
+  setRoomIndexTo: 4
 --- !u!4 &1675573455
 Transform:
   m_ObjectHideFlags: 0
@@ -75087,6 +75103,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1940244726}
     m_Modifications:
+    - target: {fileID: 2553386705180420819, guid: 4679c0345ab0e8645b5304bb5efdd6de, type: 3}
+      propertyPath: pointA
+      value: 
+      objectReference: {fileID: 1212461594}
+    - target: {fileID: 2553386705180420819, guid: 4679c0345ab0e8645b5304bb5efdd6de, type: 3}
+      propertyPath: pointB
+      value: 
+      objectReference: {fileID: 1849307217}
     - target: {fileID: 2553386705180420819, guid: 4679c0345ab0e8645b5304bb5efdd6de, type: 3}
       propertyPath: _pointA
       value: 
@@ -93555,6 +93579,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 733668452787507185, guid: 3e3eb2b4db5918c4da8d1912931e7816, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1993337898988709095, guid: 3e3eb2b4db5918c4da8d1912931e7816, type: 3}
       propertyPath: rooms
       value: 
@@ -93598,14 +93626,6 @@ PrefabInstance:
     - target: {fileID: 4151432100798005847, guid: 3e3eb2b4db5918c4da8d1912931e7816, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6619154722671324592, guid: 3e3eb2b4db5918c4da8d1912931e7816, type: 3}
-      propertyPath: groundDelay
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6619154722671324592, guid: 3e3eb2b4db5918c4da8d1912931e7816, type: 3}
-      propertyPath: maxJumpVelocity
-      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 7654515358562446990, guid: 3e3eb2b4db5918c4da8d1912931e7816, type: 3}
       propertyPath: attackAnimation

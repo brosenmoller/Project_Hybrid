@@ -1,51 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Drawing.Text;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class EnemyPatrolScript : MonoBehaviour
 {
-    [SerializeField] private GameObject _pointA;
-    [SerializeField] private GameObject _pointB;
-    [SerializeField] private float _speed;
+    [SerializeField] private GameObject pointA;
+    [SerializeField] private GameObject pointB;
+    [SerializeField] private float moveSpeed;
 
-    private Rigidbody2D _rb2D;
-    private Transform _currentPoint;
-    void Start()
+    private Rigidbody2D rigidBody2D;
+    private Transform currentPoint;
+
+    private void Start()
     {
-        _rb2D= GetComponent<Rigidbody2D>();
-        _currentPoint = _pointB.transform;
+        rigidBody2D = GetComponent<Rigidbody2D>();
+        currentPoint = pointB.transform;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        Vector2 point = _currentPoint.position - transform.position;    
-        if(_currentPoint == _pointB.transform)
+        if (currentPoint == pointB.transform)
         {
-            _rb2D.velocity = new Vector2(_speed, 0);
+            rigidBody2D.velocity = new Vector2(moveSpeed, 0);
         }
         else
         {
-            _rb2D.velocity = new Vector2(-_speed, 0);
+            rigidBody2D.velocity = new Vector2(-moveSpeed, 0);
         }
-        if (Vector2.Distance(transform.position, _currentPoint.position) < 0.5f && _currentPoint == _pointB.transform)
+
+        if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointB.transform)
         {
-            
-            flip();
-            _currentPoint = _pointA.transform;
+            Flip();
+            currentPoint = pointA.transform;
         }
-        if (Vector2.Distance(transform.position, _currentPoint.position) < 0.5f && _currentPoint == _pointA.transform)
+
+        if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointA.transform)
         {
-           
-            flip();
-            _currentPoint = _pointB.transform;
+            Flip();
+            currentPoint = pointB.transform;
         }
         
     }
-    private void flip()
+    private void Flip()
     {
         Vector3 localScale = transform.localScale;
         localScale.x *= -1;
