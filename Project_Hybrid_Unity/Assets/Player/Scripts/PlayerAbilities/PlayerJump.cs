@@ -38,13 +38,13 @@ public class PlayerJump : PlayerAbility
         isGrounded = GroundCheck();
 
         InputService.JumpStarted += InitiateJump;
-        InputService.JumpCancelled += CutJumpVelocity;
+        //InputService.JumpCancelled += CutJumpVelocity;
     }
 
     private void OnDisable()
     {
         InputService.JumpStarted -= InitiateJump;
-        InputService.JumpCancelled -= CutJumpVelocity;
+        //InputService.JumpCancelled -= CutJumpVelocity;
     }
 
     private void Update()

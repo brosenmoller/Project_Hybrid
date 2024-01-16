@@ -69389,7 +69389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputHandlingMethod: 0
-  setRoomIndexTo: 4
+  setRoomIndexTo: 3
 --- !u!4 &1675573455
 Transform:
   m_ObjectHideFlags: 0

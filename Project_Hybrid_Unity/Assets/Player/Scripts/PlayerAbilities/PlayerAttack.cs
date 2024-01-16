@@ -15,6 +15,8 @@ public class PlayerAttack : PlayerAbility
     protected override void Initialize()
     {
         InputService.AttackStarted += Attack;
+
+        PointAttackPoint();
     }
 
     private void OnDisable()
@@ -27,7 +29,7 @@ public class PlayerAttack : PlayerAbility
         if (attackCooldown <= Time.time)
         {
             Transform rotationPlayer = transform.GetChild(0);
-            GameObject attackGbj = Instantiate(attackAnimation, attackPoint.position,rotationPlayer.transform.rotation);
+            GameObject attackGbj = Instantiate(attackAnimation, attackPoint.position, rotationPlayer.transform.rotation);
             attackGbj.transform.parent = attackPoint.transform;
             
             attackCooldown = startAttackCooldown + Time.time;
@@ -50,7 +52,7 @@ public class PlayerAttack : PlayerAbility
 
     private void PointAttackPoint()
     {
-        attackPoint.localPosition = new Vector2(InputService.Direction *attackOffset, 0);
+        attackPoint.localPosition = new Vector2(InputService.Direction * attackOffset, 0);
     }
 
     private void OnDrawGizmosSelected()
