@@ -80,6 +80,7 @@ public class PlayerJump : PlayerAbility
             capsuleCollider.sharedMaterial = null;
             animator.SetBool("isJumping", false);
 
+
             StartCoroutine(JumpSqueeze(xSqueeze, ySqueeze, squeezeDuration));
         }
     }
