@@ -11,6 +11,7 @@ public class PlayerAttack : PlayerAbility
     [SerializeField] private GameObject attackAnimation;
 
     private float attackCooldown;
+    public Animator animator;
 
     protected override void Initialize()
     {
@@ -33,6 +34,7 @@ public class PlayerAttack : PlayerAbility
             attackGbj.transform.parent = attackPoint.transform;
             
             attackCooldown = startAttackCooldown + Time.time;
+            animator.SetBool("Attack", true);
 
             Collider2D[] colliders = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius);
             foreach (Collider2D collider in colliders)
@@ -43,6 +45,11 @@ public class PlayerAttack : PlayerAbility
                 }
             }
         }
+    }
+
+    public void EndAttack()
+    {
+        animator.SetBool("Attack", false);
     }
 
     private void FixedUpdate()

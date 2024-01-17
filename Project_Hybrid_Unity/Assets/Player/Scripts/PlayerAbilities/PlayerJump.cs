@@ -35,6 +35,8 @@ public class PlayerJump : PlayerAbility
     private float jumpTimer;
     private float currentJumpVelocity;
 
+    public Animator animator;
+
     protected override void Initialize()
     {
         RigidBody.gravityScale = rigidBodyGravityScale;
@@ -76,6 +78,7 @@ public class PlayerJump : PlayerAbility
             RigidBody.sharedMaterial = null;
             boxCollider.sharedMaterial = null;
             capsuleCollider.sharedMaterial = null;
+            animator.SetBool("isJumping", false);
 
             StartCoroutine(JumpSqueeze(xSqueeze, ySqueeze, squeezeDuration));
         }
@@ -105,6 +108,7 @@ public class PlayerJump : PlayerAbility
         if (jumpTimer > Time.time && (groundTimer > Time.time || isGrounded))
         {
             Jump(currentJumpVelocity);
+            animator.SetBool("isJumping", true);
         }
     }
 
