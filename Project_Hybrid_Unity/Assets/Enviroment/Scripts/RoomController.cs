@@ -7,6 +7,7 @@ public class RoomController : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private GameObject roomContents;
     [SerializeField] private PolygonCollider2D frameCollider;
+    [SerializeField] private bool finishRoom;
     public Transform playerSpawnPoint;
 
     private Collider2D playerCollider;

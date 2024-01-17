@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAudioManager : MonoBehaviour
@@ -12,19 +10,15 @@ public class PlayerAudioManager : MonoBehaviour
     {
         source = GetComponent<AudioSource>();
     }
+
     public void PlaySound(int clipNumber)
     {
         AudioClip CurrentClip = clips[clipNumber -1];
-        if(CurrentClip != null)
+
+        if (CurrentClip != null)
         {
             source.clip = CurrentClip;
             source.Play();
         }
-        
     }
-
-
-
-
-
 }
