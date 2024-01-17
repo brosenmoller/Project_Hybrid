@@ -129,7 +129,7 @@ void loop(){
     Serial.write(bitFlag);
   }
 
-   delay(10);
+  delay(10);
   
   // if (bitFlag & jump.bitFlag)
   // {

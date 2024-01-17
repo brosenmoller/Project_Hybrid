@@ -622,7 +622,9 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: d55bacca879f6664f906e443d17e9fce, type: 3}
+      name: _NormalMap
     nameFileIdTable:
       TileSetHybrid_0: -561990089
       TileSetHybrid_1: -2081046160
