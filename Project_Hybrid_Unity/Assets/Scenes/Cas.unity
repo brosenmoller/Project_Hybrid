@@ -69423,7 +69423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputHandlingMethod: 0
-  setRoomIndexTo: 3
+  setRoomIndexTo: 2
 --- !u!4 &1675573455
 Transform:
   m_ObjectHideFlags: 0
@@ -75448,7 +75448,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3849837032037991783, guid: 5fdcbfa365bc17a4a851b61e07d65fca, type: 3}
       propertyPath: riseSpeed
-      value: 0.5
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 3849837032037991783, guid: 5fdcbfa365bc17a4a851b61e07d65fca, type: 3}
       propertyPath: endPostion
