@@ -192,7 +192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 649977623779678015}
   - component: {fileID: 8266692041787333366}
-  - component: {fileID: 601966230179817348}
+  - component: {fileID: 5553120592710230075}
   m_Layer: 0
   m_Name: DeathHitBox
   m_TagString: Untagged
@@ -260,7 +260,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.939888, y: 1.108202}
   m_EdgeRadius: 0
---- !u!114 &601966230179817348
+--- !u!114 &5553120592710230075
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -269,6 +269,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 4716720913046697826}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dc35201cfe69624eb86102b362d6dd9, type: 3}
+  m_Script: {fileID: 11500000, guid: b95c9b80567eb0249ba71c0ac48e1aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

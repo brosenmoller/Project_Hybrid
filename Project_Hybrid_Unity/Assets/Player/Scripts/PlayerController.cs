@@ -1,8 +1,11 @@
 ﻿using Cinemachine;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
     public const string ROOM_SAVE_STRING = "ROOM";
     public bool CanMove { get; set; } = true;
     public bool CanJump { get; set; } = true;
@@ -11,6 +14,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform rooms;
 
     private int roomIndex;
+
+    public Animator animator;
+    public Rigidbody2D rb;
+    public PlayerJump playerJump;
+    public PlayerHorizontalMovement playerHorizontalMovement;
 
     private void Start()
     {
@@ -27,6 +35,16 @@ public class PlayerController : MonoBehaviour
     }
 
     public void Death()
+    {
+        PlayerPrefs.SetInt(ROOM_SAVE_STRING, roomIndex);
+        GameManager.Instance.ReloadScene();
+    }
+
+    public void DeathByEnemy()
+    {
+        animator.SetBool("Death", true);
+    }
+    public void ReloadScene()
     {
         PlayerPrefs.SetInt(ROOM_SAVE_STRING, roomIndex);
         GameManager.Instance.ReloadScene();

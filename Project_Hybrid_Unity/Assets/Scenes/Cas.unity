@@ -82058,6 +82058,33 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1d472a69aea7c4944a48e366405ffea1, type: 3}
   - {fileID: 8300000, guid: c03338234c195064b8fab8ef5238dd80, type: 3}
   - {fileID: 8300000, guid: b64b2a7a5ef25aa4b908751b428323d7, type: 3}
+--- !u!50 &1904232984 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 4198913633473703552, guid: 3e3eb2b4db5918c4da8d1912931e7816, type: 3}
+  m_PrefabInstance: {fileID: 6638259868965117112}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1904232990 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6619154722671324592, guid: 3e3eb2b4db5918c4da8d1912931e7816, type: 3}
+  m_PrefabInstance: {fileID: 6638259868965117112}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904232958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f943f542db7553d4387eea04f539a89a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1904232991 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1822389071550640117, guid: 3e3eb2b4db5918c4da8d1912931e7816, type: 3}
+  m_PrefabInstance: {fileID: 6638259868965117112}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904232958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6069c2f5ac948d43b9dc98feffaa86a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1925527167
 GameObject:
   m_ObjectHideFlags: 0
@@ -93856,9 +93883,25 @@ PrefabInstance:
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1993337898988709095, guid: 3e3eb2b4db5918c4da8d1912931e7816, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 1904232984}
+    - target: {fileID: 1993337898988709095, guid: 3e3eb2b4db5918c4da8d1912931e7816, type: 3}
       propertyPath: rooms
       value: 
       objectReference: {fileID: 510773341}
+    - target: {fileID: 1993337898988709095, guid: 3e3eb2b4db5918c4da8d1912931e7816, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1904232969}
+    - target: {fileID: 1993337898988709095, guid: 3e3eb2b4db5918c4da8d1912931e7816, type: 3}
+      propertyPath: playerJump
+      value: 
+      objectReference: {fileID: 1904232990}
+    - target: {fileID: 1993337898988709095, guid: 3e3eb2b4db5918c4da8d1912931e7816, type: 3}
+      propertyPath: playerHorizontalMovement
+      value: 
+      objectReference: {fileID: 1904232991}
     - target: {fileID: 3630169144276282822, guid: 3e3eb2b4db5918c4da8d1912931e7816, type: 3}
       propertyPath: m_Size.x
       value: 1.0000002
