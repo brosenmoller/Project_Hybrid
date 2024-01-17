@@ -53064,7 +53064,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -200
   m_Sprite: {fileID: 21300000, guid: 20812276b2290674f97a02efc7e0ab1a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.24705882}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -75259,11 +75259,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8600825267846152737, guid: 4679c0345ab0e8645b5304bb5efdd6de, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.5
+      value: 18.500015
       objectReference: {fileID: 0}
     - target: {fileID: 8600825267846152737, guid: 4679c0345ab0e8645b5304bb5efdd6de, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.5
+      value: 4.499969
       objectReference: {fileID: 0}
     - target: {fileID: 8600825267846152737, guid: 4679c0345ab0e8645b5304bb5efdd6de, type: 3}
       propertyPath: m_LocalPosition.z

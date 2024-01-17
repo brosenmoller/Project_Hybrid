@@ -115,7 +115,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 135
+        width: 360
         height: 135
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -134,9 +134,9 @@ TextureImporter:
       name: SpritesheetAnimatiePlayerATTACK_1
       rect:
         serializedVersion: 2
-        x: 135
+        x: 360
         y: 0
-        width: 135
+        width: 360
         height: 135
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -155,9 +155,9 @@ TextureImporter:
       name: SpritesheetAnimatiePlayerATTACK_2
       rect:
         serializedVersion: 2
-        x: 270
+        x: 720
         y: 0
-        width: 135
+        width: 360
         height: 135
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -176,9 +176,9 @@ TextureImporter:
       name: SpritesheetAnimatiePlayerATTACK_3
       rect:
         serializedVersion: 2
-        x: 405
+        x: 1080
         y: 0
-        width: 135
+        width: 360
         height: 135
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -197,9 +197,9 @@ TextureImporter:
       name: SpritesheetAnimatiePlayerATTACK_4
       rect:
         serializedVersion: 2
-        x: 540
+        x: 1440
         y: 0
-        width: 135
+        width: 360
         height: 135
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -218,9 +218,9 @@ TextureImporter:
       name: SpritesheetAnimatiePlayerATTACK_5
       rect:
         serializedVersion: 2
-        x: 675
+        x: 1800
         y: 0
-        width: 135
+        width: 360
         height: 135
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -239,9 +239,9 @@ TextureImporter:
       name: SpritesheetAnimatiePlayerATTACK_6
       rect:
         serializedVersion: 2
-        x: 810
+        x: 2160
         y: 0
-        width: 135
+        width: 360
         height: 135
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -252,6 +252,27 @@ TextureImporter:
       bones: []
       spriteID: c7fa45b6b3c56e945ab0efca4d286ff3
       internalID: -1073486462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesheetAnimatiePlayerATTACK_7
+      rect:
+        serializedVersion: 2
+        x: 2520
+        y: 0
+        width: 360
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d610318cad6217840ae7ddbd92abcd11
+      internalID: -1205205758
       vertices: []
       indices: 
       edges: []
@@ -274,6 +295,7 @@ TextureImporter:
       SpritesheetAnimatiePlayerATTACK_4: -1444681424
       SpritesheetAnimatiePlayerATTACK_5: 1830621058
       SpritesheetAnimatiePlayerATTACK_6: -1073486462
+      SpritesheetAnimatiePlayerATTACK_7: -1205205758
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
