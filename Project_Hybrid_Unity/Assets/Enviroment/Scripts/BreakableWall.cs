@@ -62,7 +62,23 @@ public class BreakableWall : MonoBehaviour, IMeleeInteractable
 
     private void Destruction()
     {
-        Destroy(gameObject, .1f);
+        if (TryGetComponent(out AudioSource audioSource))
+        {
+            audioSource.Play();
+        }
+
+        if (TryGetComponent(out SpriteRenderer spriteRenderer))
+        {
+            spriteRenderer.enabled = false;
+        }
+
+        GetComponent<Collider2D>().enabled = false;
+        if (transform.childCount > 0)
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
+        }
+        
+        Destroy(gameObject, 3f);
     }
 }
 

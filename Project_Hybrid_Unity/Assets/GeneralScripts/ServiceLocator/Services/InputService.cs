@@ -8,7 +8,7 @@ public enum InputHandlingMethod { Normal = 0, Arduino = 1 };
 public class InputService : Service
 {
     private PlayerControls playerInputActions;
-    private readonly InputHandlingMethod inputHandlingMethod;
+    private InputHandlingMethod inputHandlingMethod;
 
     private readonly SerialPort serialPort = new("COM3", 9600);
 
@@ -53,6 +53,11 @@ public class InputService : Service
     {
         this.inputHandlingMethod = inputHandlingMethod;
 
+        playerInputActions = new PlayerControls();
+        playerInputActions.Enable();
+
+        playerInputActions.Gameplay.Continue.performed += SwithInput;
+
         if (inputHandlingMethod == InputHandlingMethod.Normal)
         {
             SetupNormalInput();
@@ -63,11 +68,24 @@ public class InputService : Service
         }
     }
 
+    private void SwithInput(InputAction.CallbackContext callbackContext)
+    {
+        if (inputHandlingMethod == InputHandlingMethod.Normal)
+        {
+            DisableNormalInput();
+            inputHandlingMethod = InputHandlingMethod.Arduino;
+            SetupArduinoInput();
+        }
+        else if (inputHandlingMethod == InputHandlingMethod.Arduino)
+        {
+            DisableArduinoInput();
+            inputHandlingMethod = InputHandlingMethod.Normal;
+            SetupNormalInput();
+        }
+    }
+
     private void SetupNormalInput()
     {
-        playerInputActions = new PlayerControls();
-        playerInputActions.Enable();
-
         playerInputActions.Gameplay.HorizontalMovement.performed += UpdateMovementDirection;
         playerInputActions.Gameplay.HorizontalMovement.canceled += ResetMovementDirection;
         playerInputActions.Gameplay.Jump.started += JumpStartedEvent;
@@ -76,6 +94,18 @@ public class InputService : Service
         playerInputActions.Gameplay.Crouch.canceled += CrouchCancelledEvent;
         playerInputActions.Gameplay.Attack.started += AttackStartedEvent;
         playerInputActions.Gameplay.Dash.started += DashStartedEvent;
+    }
+
+    private void DisableNormalInput()
+    {
+        playerInputActions.Gameplay.HorizontalMovement.performed -= UpdateMovementDirection;
+        playerInputActions.Gameplay.HorizontalMovement.canceled -= ResetMovementDirection;
+        playerInputActions.Gameplay.Jump.started -= JumpStartedEvent;
+        playerInputActions.Gameplay.Jump.canceled -= JumpCancelledEvent;
+        playerInputActions.Gameplay.Crouch.started -= CrouchStartedEvent;
+        playerInputActions.Gameplay.Crouch.canceled -= CrouchCancelledEvent;
+        playerInputActions.Gameplay.Attack.started -= AttackStartedEvent;
+        playerInputActions.Gameplay.Dash.started -= DashStartedEvent;
     }
 
     public void UpdateMovementDirection(InputAction.CallbackContext callbackContext) => HorizontalAxis = (int)callbackContext.ReadValue<float>();
@@ -95,6 +125,12 @@ public class InputService : Service
 
         arduinoThread = new Thread(ArduinoInputThread);
         arduinoThread.Start();
+    }
+
+    private void DisableArduinoInput()
+    {
+        serialPort.Close();
+        arduinoThread.Abort();
     }
 
     public void DisablePlayerInput()
