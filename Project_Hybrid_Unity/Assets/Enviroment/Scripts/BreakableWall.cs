@@ -5,7 +5,7 @@ public class BreakableWall : MonoBehaviour, IMeleeInteractable
     [Header("DestructableWall Settings")]
     [SerializeField] private float hitPoints = 1;
     [SerializeField] private bool directional = false;
-    [SerializeField][Range(-1, 1)] private int interactableDirection = 1;
+    [SerializeField, Range(-1, 1)] private int interactableDirection = 1;
     [SerializeField] private bool vertical = false;
 
     private Transform player;
@@ -62,7 +62,23 @@ public class BreakableWall : MonoBehaviour, IMeleeInteractable
 
     private void Destruction()
     {
-        Destroy(gameObject, .1f);
+        if (TryGetComponent(out AudioSource audioSource))
+        {
+            audioSource.Play();
+        }
+
+        if (TryGetComponent(out SpriteRenderer spriteRenderer))
+        {
+            spriteRenderer.enabled = false;
+        }
+
+        GetComponent<Collider2D>().enabled = false;
+        foreach (Transform t in transform)
+        {
+            t.gameObject.SetActive(false);
+        }
+        
+        Destroy(gameObject, 3f);
     }
 }
 

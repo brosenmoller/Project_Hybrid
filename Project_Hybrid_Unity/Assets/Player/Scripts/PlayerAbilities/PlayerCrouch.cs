@@ -63,7 +63,7 @@ public class PlayerCrouch : PlayerAbility
         {
             collider = Physics2D.OverlapBox(
                 (Vector2)transform.position + colliderDefaultOffset + new Vector2(0, 0.05f),
-                new Vector2(transform.localScale.x * colliderDefaultSize.x, transform.localScale.y * colliderDefaultSize.y),
+                new Vector2(transform.localScale.x * colliderDefaultSize.x * 0.9f, transform.localScale.y * colliderDefaultSize.y * 0.9f),
                 0,
                 groundMask
             );

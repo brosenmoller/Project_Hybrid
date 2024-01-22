@@ -21,6 +21,11 @@ public class PlayerJump : PlayerAbility
     [SerializeField] private float ySqueeze = 0.8f;
     [SerializeField] private float squeezeDuration = 0.1f;
 
+    [Header("Physics Material")]
+    [SerializeField] private PhysicsMaterial2D inAirPhysicsMaterial;
+    [SerializeField] private CapsuleCollider2D capsuleCollider;
+    [SerializeField] private BoxCollider2D boxCollider;
+
     public float GetJumpTimer { get => jumpTimer; }
 
     private bool isGrounded;
@@ -30,6 +35,8 @@ public class PlayerJump : PlayerAbility
     private float jumpTimer;
     private float currentJumpVelocity;
 
+    public Animator animator;
+
     protected override void Initialize()
     {
         RigidBody.gravityScale = rigidBodyGravityScale;
@@ -38,13 +45,13 @@ public class PlayerJump : PlayerAbility
         isGrounded = GroundCheck();
 
         InputService.JumpStarted += InitiateJump;
-        InputService.JumpCancelled += CutJumpVelocity;
+        //InputService.JumpCancelled += CutJumpVelocity;
     }
 
     private void OnDisable()
     {
         InputService.JumpStarted -= InitiateJump;
-        InputService.JumpCancelled -= CutJumpVelocity;
+        //InputService.JumpCancelled -= CutJumpVelocity;
     }
 
     private void Update()
@@ -59,17 +66,22 @@ public class PlayerJump : PlayerAbility
         {
             groundTimer = Time.time + groundDelay;
             wasGrounded = false;
+
+            RigidBody.sharedMaterial = inAirPhysicsMaterial;
+            boxCollider.sharedMaterial = inAirPhysicsMaterial;
+            capsuleCollider.sharedMaterial = inAirPhysicsMaterial;
         }
 
         // landing
         if (!wasGrounded && isGrounded)
         {
-            StartCoroutine(JumpSqueeze(xSqueeze, ySqueeze, squeezeDuration));
+            RigidBody.sharedMaterial = null;
+            boxCollider.sharedMaterial = null;
+            capsuleCollider.sharedMaterial = null;
+            animator.SetBool("isJumping", false);
 
-            if (groundTimer < Time.time - groundDelay)
-            {
-                //Posible Land animation
-            }
+
+            StartCoroutine(JumpSqueeze(xSqueeze, ySqueeze, squeezeDuration));
         }
     }
 
@@ -97,6 +109,7 @@ public class PlayerJump : PlayerAbility
         if (jumpTimer > Time.time && (groundTimer > Time.time || isGrounded))
         {
             Jump(currentJumpVelocity);
+            animator.SetBool("isJumping", true);
         }
     }
 

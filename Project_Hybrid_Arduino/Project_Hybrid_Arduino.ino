@@ -3,10 +3,10 @@ const float referenceResistance = 100000;
 const float errorMargin = 2000;
 
 //Mux control pins
-const int s0 = 8;
-const int s1 = 9;
-const int s2 = 10;
-const int s3 = 11;
+const int s0 = 7;
+const int s1 = 8;
+const int s2 = 9;
+const int s3 = 10;
 
 //Mux in "SIG" pin
 const int SIG_pin = 0;
@@ -30,8 +30,8 @@ int muxChannel[16][4]={
   {1,1,1,1}  //channel 15
 };
 
-const int amountOfAnalogPins = 4;
-int analogPins[amountOfAnalogPins] = {0, 1, 2, 3};
+const int amountOfAnalogPins = 15;
+int analogPins[amountOfAnalogPins] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
 
 class Input {
 public:
@@ -45,8 +45,8 @@ public:
   byte bitFlag;
 };
 
-Input left    (5100,   0b1);
-Input right   (10000,  0b10);
+Input left    (10000,   0b1);
+Input right   (5100,  0b10);
 Input jump    (20000,  0b100);
 Input crouch  (51000,  0b1000);
 Input attack  (68000,  0b10000);
@@ -68,6 +68,7 @@ int ReadMultiplexer(int channel){
 float GetAnalogResistance(int analogPin) {
   int raw = 0;
   raw = ReadMultiplexer(analogPin);
+  //Serial.println(raw);
 
   float tileResistance = 0;
   float buffer = 0;
@@ -103,6 +104,7 @@ void loop(){
 
   for (int i = 0; i < amountOfAnalogPins; i++){
     const float resistance = GetAnalogResistance(analogPins[i]);
+    //Serial.println(resistance);
 
     if (resistance > 200000 || resistance < 1){
       continue;
@@ -126,6 +128,7 @@ void loop(){
     Serial.flush();
     Serial.write(bitFlag);
   }
+
   delay(10);
   
   // if (bitFlag & jump.bitFlag)
